@@ -13,17 +13,35 @@ class Selector extends Component {
 
 
   }
+
   render (){
-    return(
-      <div className="Selector">
-        <Link to="/create">
-          <Box action="Create Party" description="Create a New Party"> </Box>
-        </Link>
-        <Link to="/search">
-          <Box  action="Search Party" description="Search for a New Party"> </Box>
-        </Link>
-      </div>
-    );
+    console.log(this.props.isAuthenticated);
+    if(this.props.isAuthenticated){
+      return(
+        <div className="Selector">
+          <Link to="/create">
+            <Box action="Create Party" description="Create a New Party"> </Box>
+          </Link>
+          <Link to="/search">
+            <Box  action="Search Party" description="Search for a New Party"> </Box>
+          </Link>
+        </div>
+      );
+    }
+    else{
+      return(
+        <div className="Selector">
+          <Link to="/register">
+            <Box action="Create Party" description="Create a New Party"> </Box>
+          </Link>
+          <Link to="/search">
+            <Box  action="Search Party" description="Search for a New Party"> </Box>
+          </Link>
+        </div>
+      );
+
+    }
+
 
   }
 

@@ -47,7 +47,7 @@ class App extends Component {
       return (
         <Router>
             <Route path="/" render={()=> <Banner username={this.state.username} isAuthenticated={this.state.isAuthenticated}/>}/>
-            <Route path="/home" component={Selector}/>
+            <Route path="/home" render={() => <Selector isAuthenticated={this.state.isAuthenticated}/>}/>
             <Route path="/search" component={PartyFinder}/>
             <Route path="/partys/:id" render={(props) => <PartyDetail {...props} username={this.state.username} isAuthenticated={this.state.isAuthenticated}/>}/>
         </Router>
@@ -57,7 +57,7 @@ class App extends Component {
       return(
         <Router>
             <Route path="/" render={()=> <Banner isAuthenticated={this.state.isAuthenticated}/> }/>
-            <Route path="/home" component={Selector}/>
+            <Route path="/home" render={() => <Selector isAuthenticated={this.state.isAuthenticated}/>}/>
             <Route path="/search" component={PartyFinder}/>
             <Route path="/partys/:id" render={(props) => <PartyDetail {...props}
               username={this.state.username}  isAuthenticated={this.state.isAuthenticated}/>}/>

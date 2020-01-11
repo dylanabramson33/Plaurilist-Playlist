@@ -1,5 +1,21 @@
 .PartyFinder {
-  margin-top: 20px;
-  text-align: center;
+  padding-top: 20px;
 
+
+
+
+}
+
+.form-inline{
+  display: inline;
+  text-align: center;
+  margin-right:auto;
+  
+}
+
+.btn {
+  margin-left: 5px;
+}
+.form-control{
+  background-color: blue;
 }
