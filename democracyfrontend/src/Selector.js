@@ -15,11 +15,13 @@ class Selector extends Component {
   }
 
   render (){
-    console.log(this.props.isAuthenticated);
+
     if(this.props.isAuthenticated){
       return(
         <div className="Selector">
+          <h1> What Do You Want To Do? </h1>
           <Link to="/create">
+
             <Box action="Create Party" description="Create a New Party"> </Box>
           </Link>
           <Link to="/search">

@@ -36,18 +36,22 @@ function PartyFinder() {
 
   return (
     <div className="PartyFinder">
-      <form className="form-inline" onSubmit={getSearch}>
-        <div className="form-group w-75">
-          <input className="form-control col-xs-3" value={search} onChange={updateSearch} />
-          <button className="btn btn-elegant btn-rounded btn-sm my-0">
+      <div class="container">
+      <form className="form" onSubmit={getSearch}>
+
+          <input className="form-control" value={search} onChange={updateSearch} />
+          <button className="btn btn-primary">
             Search
           </button>
+      </form>
+        <div className="results">
+        {partys.map(party => (
+          <Link to={`partys/${party.id}`}><h1> {party.party_name} </h1></Link>
+        ))}
         </div>
 
-      </form>
-      {partys.map(party => (
-        <Link to={`partys/${party.id}`}><h1> {party.party_name} </h1></Link>
-      ))}
+      </div>
+
 
     </div>
   );

@@ -3,19 +3,19 @@
 
 
 
-
 }
 
-.form-inline{
-  display: inline;
+.PartyFinder .container {
   text-align: center;
-  margin-right:auto;
-  
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.btn {
-  margin-left: 5px;
+.PartyFinder .btn {
+  margin-top: 5px;
 }
-.form-control{
-  background-color: blue;
+
+.PartyFinder .results {
+  margin-top: 50px;
 }
