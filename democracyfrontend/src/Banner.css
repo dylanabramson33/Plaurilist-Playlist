@@ -57,6 +57,30 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.logOut {
+  margin-top: 8px;
+  float: right;
+  margin-right: 10px;
+  padding: 10px;
+  float: right;
+  color: black;
+  font-weight:  normal;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.logOut button{
+  border: none;
+  background-color: transparent;
+  z-index: 2;
+  webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .Username {
   margin-top: 8px;
   float: right;

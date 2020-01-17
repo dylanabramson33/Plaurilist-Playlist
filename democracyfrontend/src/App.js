@@ -22,10 +22,17 @@ class App extends Component {
 
     this.authenticateUser = this.authenticateUser.bind(this);
     this.checkForUserCookie = this.checkForUserCookie.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
   authenticateUser() {
     this.setState({"isAuthenticated" : true});
+  }
+
+  logOut() {
+    Cookies.remove("username");
+    Cookies.remove("token")
+    this.setState({"isAuthenticated" : false});
   }
 
   checkForUserCookie(){
@@ -45,7 +52,7 @@ class App extends Component {
     if(this.state.isAuthenticated){
       return (
         <Router>
-            <Route path="/" render={()=> <Banner username={this.state.username} isAuthenticated={this.state.isAuthenticated}/>}/>
+            <Route path="/" render={()=> <Banner logOut={this.logOut} username={this.state.username} isAuthenticated={this.state.isAuthenticated}/>}/>
             <Route path="/home" render={() => <Selector isAuthenticated={this.state.isAuthenticated}/>}/>
             <Route path="/search" component={PartyFinder}/>
             <Route path="/partys/:id" render={(props) => <PartyDetail {...props} username={this.state.username} isAuthenticated={this.state.isAuthenticated}/>}/>

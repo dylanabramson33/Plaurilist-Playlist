@@ -16,6 +16,7 @@ class Banner extends Component {
   render (){
     if(!this.props.isAuthenticated){
       return(
+
         <div className="Banner">
           <Link to="/home">
             <img src={ballotbox}/>
@@ -41,6 +42,9 @@ class Banner extends Component {
             <img src={ballotbox}/>
             <h1> Plauralist Playlist </h1>
           </Link>
+          <div className="logOut">
+            <button onClick={this.props.logOut}> Log Out </button>
+          </div>
           <div className="Username">
             <h1> {this.props.username} </h1>
           </div>

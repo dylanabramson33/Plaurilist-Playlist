@@ -1,15 +1,12 @@
 from django.shortcuts import render
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import mixins, generics
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
-from rest_framework.decorators import parser_classes
-from rest_framework.parsers import JSONParser
-from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from rest_framework import mixins, generics, viewsets, status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, parser_classes
+from rest_framework.parsers import JSONParser
+from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings
 from rest_framework import permissions
 from .models import Party, Song

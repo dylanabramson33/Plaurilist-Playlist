@@ -13,8 +13,8 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
   margin-top: 40px;
-  transition: all 500ms ease;
-  transition-property: height, width;
+  transition: all 400ms ease;
+  transition-property: transform, background-color;
 
   -webkit-box-shadow: 0 8px 6px -6px #999;
     -moz-box-shadow: 0 8px 6px -6px #999;
@@ -26,6 +26,5 @@
 
 .Box:hover{
   background-color: lightgray;
-  height: 300px;
-  width: 300px;
+  transform: scale(1.05,1.05);
 }

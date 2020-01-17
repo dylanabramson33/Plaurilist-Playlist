@@ -19,7 +19,7 @@ class Selector extends Component {
     if(this.props.isAuthenticated){
       return(
         <div className="Selector">
-          <h1> What Do You Want To Do? </h1>
+          <h1> What do You Want to do? </h1>
           <Link to="/create">
 
             <Box action="Create Party" description="Create a New Party"> </Box>
@@ -33,6 +33,7 @@ class Selector extends Component {
     else{
       return(
         <div className="Selector">
+          <h1> What do You Want to do? </h1>
           <Link to="/register">
             <Box action="Create Party" description="Create a New Party"> </Box>
           </Link>
