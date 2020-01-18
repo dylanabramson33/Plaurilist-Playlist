@@ -38,7 +38,7 @@ class Selector extends Component {
             <Box action="Create Party" description="Create a New Party"> </Box>
           </Link>
           <Link to="/search">
-            <Box  action="Search Party" description="Search for a New Party"> </Box>
+            <Box  action="Search Party" description="Search for a Party"> </Box>
           </Link>
         </div>
       );

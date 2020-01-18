@@ -9,6 +9,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 urlpatterns = [
     path('token-auth/', obtain_jwt_token),
     path('users/', views.UserList.as_view()),
+    path('spotify-login/', views.spotify_login),
+    path('spotify-login?code=<slug:code>', views.spotify_login_callback),
     path('partys/<int:pk>/', views.PartyDetail.as_view(),name="party-detail"),
     path('partys/name=<slug:party_name>/', views.PartyList.as_view()),
 

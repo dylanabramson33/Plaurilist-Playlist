@@ -22,11 +22,11 @@ class Banner extends Component {
             <img src={ballotbox}/>
             <h1> Plauralist Playlist </h1>
           </Link>
-          <Link to="/register">
+          <a href="//127.0.0.1:8000/spotify-login/">
             <div className="logIn">
               Log In
             </div>
-          </Link>
+          </a>
           <Link to="/register">
             <div className="register">
               Register
