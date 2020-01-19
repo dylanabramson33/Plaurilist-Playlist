@@ -25,7 +25,7 @@ class Selector extends Component {
             <Box action="Create Party" description="Create a New Party"> </Box>
           </Link>
           <Link to="/search">
-            <Box  action="Search Party" description="Search for a New Party"> </Box>
+            <Box  action="Search Party" description="Search for a Party"> </Box>
           </Link>
         </div>
       );
@@ -33,7 +33,7 @@ class Selector extends Component {
     else{
       return(
         <div className="Selector">
-          <h1> What do You Want to do? </h1>
+          <h1> What do you want to do? </h1>
           <Link to="/register">
             <Box action="Create Party" description="Create a New Party"> </Box>
           </Link>

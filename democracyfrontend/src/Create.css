@@ -1,0 +1,45 @@
+
+.Create .container{
+  text-align: center;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 50px;
+  width: 500px;
+}
+
+.Create .container form {
+    margin-top: 25px;
+}
+
+.Create .public {
+  margin-top: 20px;
+  margin-right: 10px;
+  display: inline;
+
+}
+.Create .private {
+  margin-top: 20px;
+  margin-right: 10px;
+  display: inline;
+
+}
+.Create .public label {
+  padding-right: 8px;
+  display: inline;
+}
+
+.Create .private label{
+  padding-right: 8px;
+
+}
+
+.createSubmit {
+  margin-top: 20px;
+}
+
+.privacySelector {
+  margin-top: 20px;
+  display: block;
+}

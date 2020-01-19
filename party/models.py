@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 class Party(models.Model):
     party_name = models.CharField(max_length=255)
-
+    public = models.BooleanField(default=True)
+    password = models.CharField(max_length=255,default='')
     def __str__(self):
         return self.party_name
 

@@ -7,8 +7,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
-    path('token-auth/', obtain_jwt_token),
-    path('users/', views.UserList.as_view()),
     path('spotify-login/callback', views.spotify_login_callback),
     path('spotify-login/', views.spotify_login),
     path('partys/<int:pk>/', views.PartyDetail.as_view(),name="party-detail"),

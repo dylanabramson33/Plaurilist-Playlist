@@ -33,7 +33,7 @@ def spotify_login(request):
     }
 
     response = requests.get(uri,params=query_parameters)
-    print(response.url)
+
     return redirect(response.url)
 
 def spotify_login_callback(request):
@@ -49,32 +49,13 @@ def spotify_login_callback(request):
     client_secret = settings.SPOTIFY_SECRET_KEY
     spotify_response = requests.post(uri,data=body_params,auth=(client_id,client_secret))
     redirect_uri = 'http://localhost:3000/login'
-    print(spotify_response.json())
+
     api_token =  spotify_response.json()["access_token"]
+    refresh_token =  spotify_response.json()["access_token"]
     uri_with_params = (redirect_uri + "?api_token=" + api_token)
 
     return redirect(uri_with_params)
 
-@api_view(['GET'])
-def current_user(request):
-    """
-    Determine the current user by their token, and return their data
-    """
-
-    serializer = UserSerializer(request.user)
-    return Response(serializer.data)
-
-
-class UserList(APIView):
-    queryset = User.objects.all()
-    permission_classes = (permissions.AllowAny,)
-
-    def post(self, request):
-        serializer = UserSerializerWithToken(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PartyList(generics.ListAPIView):
     serializer_class = PartyListSerializer
@@ -85,9 +66,6 @@ class PartyList(generics.ListAPIView):
         return Party.objects.filter(party_name__contains=party_name)
 
 
-"""
-    For viewing individual party
-"""
 class PartyDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
@@ -104,3 +82,6 @@ class PartyDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+class PartyCreate(mixins.CreateModelMixin):
+    serializer_class = PartySerializer

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'react-router-dom/Link'
 import './Banner.css';
 import ballotbox from './ballotbox.png'
+import spotifyLogo from './spotify_logo.png'
 import Cookies from 'js-cookie';
 
 
@@ -49,13 +50,13 @@ class Banner extends Component {
         <div className="Banner">
 
           <Link to="/home">
-
-            <img src={ballotbox}/>
+            <img className="ballotBox" src={ballotbox}/>
             <h1> Plauralist Playlist </h1>
           </Link>
           <a href="//127.0.0.1:8000/spotify-login/">
             <div className="logIn">
-              Log In
+              <img className="spotifyLogo" src={spotifyLogo}/>
+              Connect With Spotify
             </div>
           </a>
         </div>
@@ -65,9 +66,9 @@ class Banner extends Component {
       return(
 
         <div className="Banner">
-          <p> {this.state.name} </p>
+
           <Link to="/home">
-            <img src={ballotbox}/>
+            <img className="ballotBox" src={ballotbox}/>
             <h1> Plauralist Playlist </h1>
           </Link>
           <div className="logOut">
