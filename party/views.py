@@ -1,3 +1,5 @@
+import requests
+from base64 import b64encode
 from urllib.parse import quote
 from django.conf import settings
 from django.shortcuts import render
@@ -19,23 +21,39 @@ from .serializers import *
 
 
 def spotify_login(request):
-    scopes = "user-read-private"
+    uri = 'https://accounts.spotify.com/authorize'
+    scope = "user-read-private"
     client_id = settings.SPOTIFY_CLIENT_ID
-    response = redirect('https://accounts.spotify.com/authorize' +
-        '?response_type=code' + '&client_id=' + client_id +
-        '&scope=' + quote(scopes) + '&redirect_uri=' +
-        quote('http://http://127.0.0.1:8000/spotify-login/callback'))
+    redirect_uri = 'http://127.0.0.1:8000/spotify-login/callback'
+    query_parameters = {
+        'response_type' : 'code',
+        'redirect_uri' : redirect_uri,
+        'client_id' : client_id,
+        'scope' : scope
+    }
 
-    return response
+    response = requests.get(uri,params=query_parameters)
 
-def spotify_login_callback(request, code):
-    response = redirect('https://accounts.spotify.com/authorize' +
-        '?response_type=code' + '&client_id=' + client_id +
-        '&scope=' + quote(scopes) + '&redirect_uri=' +
-        quote('http://http://127.0.0.1:8000/spotify-login/callback'))
+    return redirect(response.url)
 
-    return response
+def spotify_login_callback(request):
+    code = request.GET.get('code')
+    uri = 'https://accounts.spotify.com/api/token'
+    redirect_uri = 'http://127.0.0.1:8000/spotify-login/callback'
+    body_params = {
+        'code' : code,
+        'grant_type' : 'client_credentials',
+        'redirect_uri' : redirect_uri
+    }
+    client_id = settings.SPOTIFY_CLIENT_ID
+    client_secret = settings.SPOTIFY_SECRET_KEY
+    spotify_response = requests.post(uri,data=body_params,auth=(client_id,client_secret))
+    print(spotify_response.text)
+    redirect_uri = 'http://localhost:3000/home'
+    api_token =  spotify_response.json()["access_token"]
+    uri_with_params = (redirect_uri + "?api_token=" + api_token)
 
+    return redirect(uri_with_params)
 
 @api_view(['GET'])
 def current_user(request):
