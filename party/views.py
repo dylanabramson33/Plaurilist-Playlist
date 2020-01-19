@@ -42,16 +42,17 @@ def spotify_login_callback(request):
     redirect_uri = 'http://127.0.0.1:8000/spotify-login/callback'
     body_params = {
         'code' : code,
-        'grant_type' : 'client_credentials',
+        'grant_type' : 'authorization_code',
         'redirect_uri' : redirect_uri
     }
     client_id = settings.SPOTIFY_CLIENT_ID
     client_secret = settings.SPOTIFY_SECRET_KEY
     spotify_response = requests.post(uri,data=body_params,auth=(client_id,client_secret))
     redirect_uri = 'http://localhost:3000/login'
+    print(spotify_response.json())
     api_token =  spotify_response.json()["access_token"]
     uri_with_params = (redirect_uri + "?api_token=" + api_token)
-    print(spotify_response.json())
+
     return redirect(uri_with_params)
 
 @api_view(['GET'])

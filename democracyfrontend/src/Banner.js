@@ -12,7 +12,7 @@ class Banner extends Component {
     super(props);
 
     this.state = {
-      'email' : '',
+      'name' : '',
 
     }
 
@@ -25,13 +25,14 @@ class Banner extends Component {
       const options = {
         method: "GET",
         headers: {
-          'Authorization': Cookies.get('token')
+          'Authorization': 'Bearer ' + Cookies.get('token')
         },
 
       }
-      fetch(`https://api.spotify.com/v1/me`,options)
-        .then(response => response.json())
-        .then(data => this.setState({'email' : data.email}))
+      fetch("https://api.spotify.com/v1/me",options)
+      .then(response=>response.json())
+      .then(data => this.setState({'name' : data.display_name}));
+
     }
 
 
@@ -62,8 +63,9 @@ class Banner extends Component {
     }
     else {
       return(
+
         <div className="Banner">
-          {this.state.email}
+          <p> {this.state.name} </p>
           <Link to="/home">
             <img src={ballotbox}/>
             <h1> Plauralist Playlist </h1>
