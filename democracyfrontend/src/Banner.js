@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Link from 'react-router-dom/Link'
 import './Banner.css';
 import ballotbox from './ballotbox.png'
+import Cookies from 'js-cookie';
 
 
 class Banner extends Component {
@@ -10,15 +11,44 @@ class Banner extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      'email' : '',
+
+    }
+
 
 
   }
+
+  componentDidUpdate(prevProps){
+    if(this.props.isAuthenticated !== prevProps.isAuthenticated){
+      const options = {
+        method: "GET",
+        headers: {
+          'Authorization': Cookies.get('token')
+        },
+
+      }
+      fetch(`https://api.spotify.com/v1/me`,options)
+        .then(response => response.json())
+        .then(data => this.setState({'email' : data.email}))
+    }
+
+
+
+
+
+    }
+
+
   render (){
     if(!this.props.isAuthenticated){
       return(
 
         <div className="Banner">
+
           <Link to="/home">
+
             <img src={ballotbox}/>
             <h1> Plauralist Playlist </h1>
           </Link>
@@ -27,17 +57,13 @@ class Banner extends Component {
               Log In
             </div>
           </a>
-          <Link to="/register">
-            <div className="register">
-              Register
-            </div>
-          </Link>
         </div>
       );
     }
     else {
       return(
         <div className="Banner">
+          {this.state.email}
           <Link to="/home">
             <img src={ballotbox}/>
             <h1> Plauralist Playlist </h1>

@@ -22,7 +22,7 @@ from .serializers import *
 
 def spotify_login(request):
     uri = 'https://accounts.spotify.com/authorize'
-    scope = "user-read-private"
+    scope = "streaming playlist-modify-public playlist-read-private user-read-private"
     client_id = settings.SPOTIFY_CLIENT_ID
     redirect_uri = 'http://127.0.0.1:8000/spotify-login/callback'
     query_parameters = {
@@ -33,7 +33,7 @@ def spotify_login(request):
     }
 
     response = requests.get(uri,params=query_parameters)
-
+    print(response.url)
     return redirect(response.url)
 
 def spotify_login_callback(request):
@@ -48,11 +48,10 @@ def spotify_login_callback(request):
     client_id = settings.SPOTIFY_CLIENT_ID
     client_secret = settings.SPOTIFY_SECRET_KEY
     spotify_response = requests.post(uri,data=body_params,auth=(client_id,client_secret))
-    print(spotify_response.text)
-    redirect_uri = 'http://localhost:3000/home'
+    redirect_uri = 'http://localhost:3000/login'
     api_token =  spotify_response.json()["access_token"]
     uri_with_params = (redirect_uri + "?api_token=" + api_token)
-
+    print(spotify_response.json())
     return redirect(uri_with_params)
 
 @api_view(['GET'])
