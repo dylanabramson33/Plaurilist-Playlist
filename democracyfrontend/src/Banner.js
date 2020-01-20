@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Link from 'react-router-dom/Link'
+import Link from 'react-router-dom/Link';
 import './Banner.css';
-import ballotbox from './ballotbox.png'
-import spotifyLogo from './spotify_logo.png'
+import ballotbox from './ballotbox.png';
+import spotifyLogo from './spotify_logo.png';
 import Cookies from 'js-cookie';
 
 

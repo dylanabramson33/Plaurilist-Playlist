@@ -10,6 +10,7 @@ urlpatterns = [
     path('spotify-login/callback', views.spotify_login_callback),
     path('spotify-login/', views.spotify_login),
     path('partys/<int:pk>/', views.PartyDetail.as_view(),name="party-detail"),
+    path('partys/create/', views.party_create,name="party-create"),
     path('partys/name=<slug:party_name>/', views.PartyList.as_view()),
 
 ]

@@ -56,6 +56,15 @@ def spotify_login_callback(request):
 
     return redirect(uri_with_params)
 
+@api_view(["POST",])
+def party_create(request):
+    if request.method == "POST":
+        serializer = PartyCreateSerializer(data=request.data)
+        print(serializer)
+        if serializer.is_valid():
+            serializer.save()
+            print("here")
+        return Response(serializer.data)
 
 class PartyList(generics.ListAPIView):
     serializer_class = PartyListSerializer
@@ -82,6 +91,3 @@ class PartyDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
-class PartyCreate(mixins.CreateModelMixin):
-    serializer_class = PartySerializer

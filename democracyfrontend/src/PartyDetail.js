@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import heart from './heart.png';
 import Song from './Song'
+import SongSearch from './SongSearch'
+
 import './PartyDetail.css'
 
 function PartyDetail({match, isAuthenticated, username}) {
@@ -45,6 +47,8 @@ function PartyDetail({match, isAuthenticated, username}) {
       ))}
       </tbody>
       </table>
+
+      <SongSearch/>
 
 
     </div>

@@ -1,8 +1,6 @@
 .PartyFinder {
   padding-top: 20px;
 
-
-
 }
 
 .PartyFinder .container {
@@ -10,6 +8,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 500px;
 }
 
 .PartyFinder .btn {
@@ -18,4 +17,52 @@
 
 .PartyFinder .results {
   margin-top: 50px;
+}
+.partyLink:hover {
+  text-decoration: none;
+}
+.PartyFinder table {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.PartyFinder thead th {
+  width: 400px;
+  height: 80px;
+  border-bottom: 3px;
+  border-color: lightgray;
+  border-bottom-style: solid;
+  text-align: center;
+  justify-content: center;
+  align: center;
+  vertical-align: middle;
+}
+
+.PartyFinder tbody td {
+  color: black;
+  width: 400px;
+  font-size: 20px;
+  height: 80px;
+  text-align: center;
+  justify-content: center;
+  align: center;
+  vertical-align: middle;
+}
+
+
+
+.PartyFinder tbody tr {
+  transition: all 400ms ease;
+  transition-property: background-color;
+  border-bottom: 3px;
+  border-color: lightgray;
+  border-bottom-style: solid;
+
+}
+
+.PartyFinder tbody tr:hover {
+  background-color: lightgray;
 }
