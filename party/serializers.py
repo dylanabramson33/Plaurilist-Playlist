@@ -1,19 +1,18 @@
-from .models import Party, Song
+from .models import Party, Song, CustomUser
 from rest_framework import serializers
-from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 
 
 
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('username',)
+        model = CustomUser
+        fields = ('user_email',)
 
 class SongDetailSerializer(serializers.ModelSerializer):
     num_favorites = serializers.SerializerMethodField()
-    favorites = UserSerializer(read_only=True, many=True)
+    favorites = CustomUserSerializer(read_only=True, many=True)
 
 
     def get_num_favorites(self, obj):
@@ -27,7 +26,6 @@ class PartySerializer(serializers.ModelSerializer):
     songs = SongDetailSerializer(
         many=True,
         read_only=True,
-
     )
 
     class Meta:
@@ -46,3 +44,15 @@ class PartyListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Party
         fields = ('id','party_name', 'public')
+
+
+
+class SongCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Song
+        fields = ('name','artist','party')
+
+    def create(self, validated_data):
+        party = validated_data.pop('party')
+        article = Song.objects.create(party=party, **validated_data)
+        return article

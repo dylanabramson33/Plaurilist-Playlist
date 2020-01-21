@@ -11,6 +11,7 @@ urlpatterns = [
     path('spotify-login/', views.spotify_login),
     path('partys/<int:pk>/', views.PartyDetail.as_view(),name="party-detail"),
     path('partys/create/', views.party_create,name="party-create"),
+    path('songs/create/', views.song_create,name="song-create"),
     path('partys/name=<slug:party_name>/', views.PartyList.as_view()),
 
 ]

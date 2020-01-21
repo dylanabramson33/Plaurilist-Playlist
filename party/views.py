@@ -22,7 +22,7 @@ from .serializers import *
 
 def spotify_login(request):
     uri = 'https://accounts.spotify.com/authorize'
-    scope = "streaming playlist-modify-public playlist-read-private user-read-private"
+    scope = 'streaming user-read-email user-read-private'
     client_id = settings.SPOTIFY_CLIENT_ID
     redirect_uri = 'http://127.0.0.1:8000/spotify-login/callback'
     query_parameters = {
@@ -63,7 +63,18 @@ def party_create(request):
         print(serializer)
         if serializer.is_valid():
             serializer.save()
+
+        return Response(serializer.data)
+
+@api_view(["POST",])
+def song_create(request):
+    if request.method == "POST":
+        serializer = SongCreationSerializer(data=request.data)
+        print(serializer.is_valid())
+        if serializer.is_valid():
+            serializer.save()
             print("here")
+
         return Response(serializer.data)
 
 class PartyList(generics.ListAPIView):

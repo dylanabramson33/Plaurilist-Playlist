@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import heart from './heart.png';
 import Song from './Song'
 import SongSearch from './SongSearch'
+import SpotifyPlayer from 'react-spotify-web-playback';
+import Cookies from 'js-cookie';
 
 import './PartyDetail.css'
 
@@ -11,8 +13,10 @@ function PartyDetail({match, isAuthenticated, username}) {
       fetchParty();
   },[])
 
+
   const[party, setParty] = useState({});
   const[songs, setSongs] = useState([]);
+
 
   const fetchParty = async () => {
     const fetchedParty = await fetch(`http://127.0.0.1:8000/partys/${match.params.id}`);
@@ -24,13 +28,14 @@ function PartyDetail({match, isAuthenticated, username}) {
 
   }
 
+
   return (
     <div className="PartyDetail">
       <h1> {party.party_name} </h1>
       <table className="PartyDetailTable">
       <thead>
       <tr>
-        <th> Song </th>
+        <th> Name </th>
         <th> Artist </th>
         <th> Votes </th>
         <th> Like </th>
@@ -48,7 +53,7 @@ function PartyDetail({match, isAuthenticated, username}) {
       </tbody>
       </table>
 
-      <SongSearch/>
+      <SongSearch id={match.params.id} fetchParty={fetchParty}/>
 
 
     </div>
