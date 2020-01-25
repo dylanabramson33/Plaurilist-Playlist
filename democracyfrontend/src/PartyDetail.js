@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import heart from './heart.png';
 import Song from './Song'
+import AddPlaylist from './AddPlaylist'
 import SongSearch from './SongSearch'
 import SpotifyPlayer from 'react-spotify-web-playback';
 import Cookies from 'js-cookie';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './PartyDetail.css'
 
@@ -16,6 +18,7 @@ function PartyDetail({match, isAuthenticated, username}) {
 
   const[party, setParty] = useState({});
   const[songs, setSongs] = useState([]);
+  const[deviceID, setDeviceID] = useState("");
 
 
   const fetchParty = async () => {
@@ -28,38 +31,80 @@ function PartyDetail({match, isAuthenticated, username}) {
 
   }
 
+  const newSongs = song => {
+    const newSongs = songs.concat([song]);
+    setSongs(newSongs);
+  }
+  if(!deviceID){
+    return (
 
-  return (
-    <div className="PartyDetail">
-      <h1> {party.party_name} </h1>
-      <table className="PartyDetailTable">
-      <thead>
-      <tr>
-        <th> Name </th>
-        <th> Artist </th>
-        <th> Votes </th>
-        <th> Like </th>
-      </tr>
-      </thead>
-      <tbody>
-       {songs.map(song =>(
-         <Song name={song.name} artist={song.artist}
-         favorites={song.favorites}
-         isAuthenticated={isAuthenticated}
-         votes={song.num_favorites}
-         username={username}
-         id={song.id}/>
-      ))}
-      </tbody>
-      </table>
+      <div className="PartyDetail">
+        <AddPlaylist setDeviceID={setDeviceID} songs={songs}/>
+        <h1> {party.party_name} </h1>
+        <table className="PartyDetailTable">
+        <thead>
+        <tr>
+          <th> Name </th>
+          <th> Artist </th>
+          <th> Votes </th>
+          <th> Like </th>
+        </tr>
+        </thead>
 
-      <SongSearch id={match.params.id} fetchParty={fetchParty}/>
+        <tbody>
+
+         {songs.map(song =>(
+           <Song name={song.name} artist={song.artist}
+           favorites={song.favorites}
+           isAuthenticated={isAuthenticated}
+           votes={song.num_favorites}
+           username={username}
+           id={song.id}/>
+        ))}
+
+        </tbody>
+        </table>
+        <SongSearch id={match.params.id} newSongs={newSongs}/>
 
 
-    </div>
+      </div>
 
 
-  );
+    );
+  }
+  else {
+    return (
+      <div className="PartyDetail">
+        <AddPlaylist setDeviceID={setDeviceID} songs={songs}/>
+        <h1> {party.party_name} </h1>
+        <table className="PartyDetailTable">
+        <thead>
+        <tr>
+          <th> Name </th>
+          <th> Artist </th>
+          <th> Votes </th>
+          <th> Like </th>
+        </tr>
+        </thead>
+        <tbody>
+         {songs.map(song =>(
+           <Song name={song.name} artist={song.artist}
+           favorites={song.favorites}
+           isAuthenticated={isAuthenticated}
+           votes={song.num_favorites}
+           username={username}
+           id={song.id}/>
+        ))}
+        </tbody>
+        </table>
+        <SongSearch id={match.params.id} newSongs={newSongs}/>
+        <button> Play </button>
+
+
+      </div>
+    );
+
+  }
 }
 
 export default PartyDetail;

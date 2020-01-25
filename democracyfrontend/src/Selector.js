@@ -22,7 +22,7 @@ class Selector extends Component {
           <h1> What do you want to do? </h1>
           <Link to="/create">
 
-            <Box action="Create Party" description="Create a New Party"> </Box>
+            <Box action="Create Party" description="Spotify Premium Only"> </Box>
           </Link>
           <Link to="/search">
             <Box  action="Search Party" description="Search for a Party"> </Box>

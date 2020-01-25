@@ -8,6 +8,7 @@
     "mdbreact": "^4.24.0",
     "query-string": "^6.10.1",
     "react": "^16.12.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-history": "^0.18.2",

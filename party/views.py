@@ -22,7 +22,7 @@ from .serializers import *
 
 def spotify_login(request):
     uri = 'https://accounts.spotify.com/authorize'
-    scope = 'streaming user-read-email user-read-private'
+    scope = 'streaming user-read-email user-read-private user-read-playback-state user-modify-playback-state user-read-currently-playing'
     client_id = settings.SPOTIFY_CLIENT_ID
     redirect_uri = 'http://127.0.0.1:8000/spotify-login/callback'
     query_parameters = {

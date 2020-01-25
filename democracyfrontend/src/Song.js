@@ -38,7 +38,6 @@ function Song({name, artist, votes, id, isAuthenticated, favorites, username }) 
 
     }
     else {
-      console.log(favorites);
       return heart
     }
   }
